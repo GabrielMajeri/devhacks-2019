@@ -41,7 +41,6 @@ def index():
             'valid_date': elements['expiryDate'],
             'card': elements['bank'],
             'cvv': elements['CVV'],
-            'valoare': elements[''],
             'id': elements['_id'],
             'iban': elements['attachedIBAN']
             })
