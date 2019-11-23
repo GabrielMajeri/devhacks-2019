@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<style>
+
+	#tranzact {
+	  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	  border-collapse: collapse;
+	  width: 100%;
+	}
+
+	#tranzact td, #tranzact th {
+	  border: 1px solid #ddd;
+	  padding: 8px;
+	}
+
+	#tranzact tr:nth-child(even){background-color: #f2f2f2;}
+
+	#tranzact tr:hover {background-color: #ddd;}
+
+	#tranzact th {
+	  padding-top: 12px;
+	  padding-bottom: 12px;
+	  text-align: left;
+	  background-color: #4CAF50;
+	  color: white;
+	}
+
+</style>
+
+<div>
+<table id="tranzact">
+	<tr><th>A</th><th>B</th><th>C</th></tr>
+	{% for element in tranzactii %}
+		<tr>
+			{% for i in element %}
+			<td>{{element[i]}}</td>
+			{% endfor %}
+		</tr>
+			
+	{% endfor %}
+
+</table>
+
+
+
+
+{% endblock %}
+
+
+{% block static_files %}
+{% endblock %}
