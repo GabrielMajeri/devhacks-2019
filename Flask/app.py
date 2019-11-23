@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
+import json
+import requests
 app = Flask(__name__)
 
 
@@ -11,27 +13,6 @@ def login():
         else:
             return redirect('/dashboard')
     return render_template('index.html', error=error)
-
-
-@app.route('/cards', methods=['GET', 'POST'])
-def cards():
-    carduri = []
-    carduri.append({
-        'nume': 'Popescu',
-        'cifre_card': '1234 5678 9012 34',
-        'valid_date': '10/22',
-        'card': 'raifeissen',
-        'cvv': 123,
-        'valoare': 1234.56})
-    carduri.append({
-        'nume': 'Ionescu',
-        'cifre_card': '4321 1243 2356 8655',
-        'valid_date': '11/24',
-        'card': 'bcr',
-        'cvv': 456,
-        'valoare': 509.21})
-
-    return render_template('carduri.html', cards=carduri)
 
 
 @app.route('/card/<id_card>')
@@ -68,7 +49,7 @@ def index():
 
 @app.route('/dashboard', methods=['POST'])
 def handle_data():
-    print ('2')
+    return "'2'"
 
 
 
