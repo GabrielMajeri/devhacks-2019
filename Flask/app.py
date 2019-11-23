@@ -33,7 +33,7 @@ def index():
     carduri = []
     response = requests.get('http://192.168.87.157:5000/cards')
     response = response.content
-    response = json.loads(response)[0]
+    response = json.loads(response)
     for elements in response:
         carduri.append({
             'nume': elements['name'],
