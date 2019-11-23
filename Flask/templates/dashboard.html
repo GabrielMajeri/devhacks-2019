@@ -13,14 +13,14 @@
               </div>
               <div class="card_details">
                   <p>{{card.nume}}</p>
-                  <p>{{card.cifre_card}}</p>
-                  <p>{{card.valid_date}}</p>
+                  <p>{{card.iban}}</p>
+                  <p>{{card.create_date}}</p>
                   <p>{{card.sold}} lei</p>
               </div>
             </div>
           </div>
         {% endfor %}
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-6 d-flex align-items-center">
           <div class="add_account text-center" onclick="add_account()">
             <p>+</p>
           </div>
