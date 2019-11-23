@@ -57,7 +57,12 @@ def index():
 
 @app.route('/dashboard', methods=['POST'])
 def handle_data():
-    json={'accountName': request.form['name'],'IBAN': request.form['iban'],'bank': request.form['bank']}
+    if  request.form['bank'].lowercase() in ['bcr','reiffeisen']:
+        json={'accountName': request.form['name'],'IBAN': request.form['iban'],'bank': request.form['bank'].lowercase()}
+    else:
+        json={'accountName': request.form['name'],'IBAN': request.form['iban'],'bank': 'simplu'}
+
+
     requests.post('http://192.168.87.157:5000/accounts', json=json)
     return redirect('/dashboard')
 
