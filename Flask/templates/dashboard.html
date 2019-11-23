@@ -7,7 +7,7 @@
 			<div class="row  d-flex justify-content-center" id="list_of_accounts">
         {% for card in cards %}
           <div class="col-md-4 col-sm-6">
-            <div class="card" onclick="{{ url_for('card( {{card.id} })') }}">
+            <div class="card" href="/card/{{card.id}}">
               <div class="card_img">
                 <img src="/static/images/card_{{card.card}}.jpg">
               </div>
@@ -15,7 +15,7 @@
                   <p>{{card.nume}}</p>
                   <p>{{card.cifre_card}}</p>
                   <p>{{card.valid_date}}</p>
-                  <p>{{card.valoare}} lei</p>
+                  <p>{{card.sold}} lei</p>
               </div>
             </div>
           </div>
