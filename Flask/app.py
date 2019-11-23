@@ -9,13 +9,13 @@ def login():
         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
             error = 'Invalid Credentials. Please try again.'
         else:
-            return render_template('dashboard.html')
+            return redirect('/')
     return render_template('index.html', error=error)
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('dashboard.html')
 
 
 
