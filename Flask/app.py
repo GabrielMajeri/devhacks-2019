@@ -34,6 +34,18 @@ def cards():
     return render_template('carduri.html', cards=carduri)
 
 
+@app.route('/card/<id_card>')
+def card(id_card):
+    # card = carddul cu id_card
+    # tranzactii de card[id_card]
+    tranzactiile = []
+    tranzactiile.append({
+                        'valoare1': 11,
+                        'valoare2': 22,
+                        'valoare3': 33})
+    return render_template('card.html', tranzactii=tranzactiile)
+
+
 @app.route('/')
 def index():
     carduri = []
