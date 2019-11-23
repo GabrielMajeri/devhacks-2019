@@ -2,14 +2,14 @@ from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
             error = 'Invalid Credentials. Please try again.'
         else:
-            return redirect('/')
+            return redirect('/dashboard')
     return render_template('index.html', error=error)
 
 
@@ -46,7 +46,7 @@ def card(id_card):
     return render_template('card.html', tranzactii=tranzactiile)
 
 
-@app.route('/')
+@app.route('/dashboard', methods=['GET'])
 def index():
     carduri = []
     carduri.append({
@@ -64,6 +64,11 @@ def index():
         'cvv': 456,
         'valoare': 509.21})
     return render_template('dashboard.html', cards=carduri)
+
+
+@app.route('/dashboard', methods=['POST'])
+def handle_data():
+    print ('2')
 
 
 
