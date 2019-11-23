@@ -49,7 +49,8 @@ const userSchema = new mongoose.Schema({
     accounts: [{
         IBAN: {
             type: String,
-            required: true
+            required: true,
+            unique: true
         },
         currency: {
             type: String,
@@ -63,6 +64,10 @@ const userSchema = new mongoose.Schema({
             type: Number,
             required: true,
             default: 0
+        },
+        bank: {
+            type: String,
+            required: true
         }
     }]
 }, {
@@ -84,11 +89,6 @@ userSchema.methods.generateAuthToken = async function () {
     await user.save()
 
     return token;
-}
-
-userSchema.methods.generateIBAN = async function () {
-    const iban = "00000000000000"
-    return iban
 }
 
 userSchema.methods.toJSON = function () {
