@@ -1,6 +1,22 @@
-Asa se randeaza paginile:
-	parametrii ste trimit asa:
-<h6>{{ parametru1 }}</h6>
-<h6>{{ parametru2 }}</h6>
+{% extends 'layout.html' %}
 
-Iar restul merg oricum
+
+
+{% block content %}
+
+
+	Asa se randeaza paginile:<br>
+		parametrii ste trimit asa:
+	<h6>{{ parametru1 }}</h6>
+	<h6>{{ parametru2 }}</h6>
+
+	Iar restul merg oricum
+
+
+{% endblock %}
+
+
+
+{% block static_files %}
+	<!-- aici bagam JS, CSS, ETC -->
+{% endblock %}

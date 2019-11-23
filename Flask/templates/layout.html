@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <base href=".">
+  </head>
+  <body>
+    <p>
+      Acest paragraf e din layout
+    </p>
+        {% block content %}{% endblock %} <!-- Asta inseamna ca asta va fi layout-ul paginilor noastre(astfel incat toate sa arate la fel) -->
+      
+
+    {% block static_files %}{% endblock %} <!-- Asta inseamna ca pe fiecare pagina in parte vom pune fisiere JS, CSS, etc separate -->
+  </body>
+</html>
