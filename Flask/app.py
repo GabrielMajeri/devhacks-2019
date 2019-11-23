@@ -22,9 +22,26 @@ def card(id_card):
     # tranzactii de card[id_card]
     tranzactiile = []
     tranzactiile.append({
-                        'valoare1': 11,
-                        'valoare2': 22,
-                        'valoare3': 33})
+                        'id': 1,
+                        'data': 2,
+                        'value': 22,
+                        'vendor': 11,
+                        })
+
+    tranzactiile.append({
+                        'id': 1,
+                        'data': 2,
+                        'value': 22,
+                        'vendor': 11,
+                        })
+
+    tranzactiile.append({
+                        'id': 1,
+                        'data': 2,
+                        'value': 22,
+                        'vendor': 11,
+                        })
+                        
     return render_template('card.html', tranzactii=tranzactiile)
 
 
