@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
+import json
+import requests
 app = Flask(__name__)
 
 
@@ -29,20 +31,21 @@ def card(id_card):
 @app.route('/dashboard', methods=['GET'])
 def index():
     carduri = []
-    carduri.append({
-        'nume': 'Popescu',
-        'cifre_card': '1234 5678 9012 34',
-        'valid_date': '10/22',
-        'card': 'raifeissen',
-        'cvv': 123,
-        'valoare': 1234.56})
-    carduri.append({
-        'nume': 'Ionescu',
-        'cifre_card': '4321 1243 2356 8655',
-        'valid_date': '11/24',
-        'card': 'bcr',
-        'cvv': 456,
-        'valoare': 509.21})
+    response = requests.get('http://192.168.87.157:5000/cards')
+    response = response.content
+    response = json.loads(response)[0]
+    for elements in response:
+        carduri.append({
+            'nume': elements['name'],
+            'cifre_card': elements['number'],
+            'valid_date': elements['expiryDate'],
+            'card': elements['bank'],
+            'cvv': elements['CVV'],
+            'valoare': elements[''],
+            'id': elements['_id'],
+            'iban': elements['attachedIBAN']
+            })
+
     return render_template('dashboard.html', cards=carduri)
 
 
