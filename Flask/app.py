@@ -42,7 +42,8 @@ def index():
             'card': elements['bank'],
             'cvv': elements['CVV'],
             'id': elements['_id'],
-            'iban': elements['attachedIBAN']
+            'iban': elements['attachedIBAN'],
+            'sold':elements['sold']
             })
 
     return render_template('dashboard.html', cards=carduri)
