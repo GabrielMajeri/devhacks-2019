@@ -16,31 +16,23 @@ def login():
 
 
 
-@app.route('/card/<id_card>')
-def card(id_card):
+@app.route('/card/<iban_card>')
+def card(iban_card):
     # card = carddul cu id_card
     # tranzactii de card[id_card]
     tranzactiile = []
-    tranzactiile.append({
-                        'id': 1,
-                        'data': 2,
-                        'value': 22,
-                        'vendor': 11,
-                        })
-
-    tranzactiile.append({
-                        'id': 1,
-                        'data': 2,
-                        'value': 22,
-                        'vendor': 11,
-                        })
-
-    tranzactiile.append({
-                        'id': 1,
-                        'data': 2,
-                        'value': 22,
-                        'vendor': 11,
-                        })
+    idul = 1
+    response = requests.get('http://192.168.87.157:5000/transactions/'+str(iban_card))
+    response = response.content
+    response = json.loads(response)[0]
+    response = response['transactions']
+    for elements in response:
+        tranzactiile.append({
+                        'id': idul,
+                        'data': elements['date'].replace('T',' ').replace('Z','').split('.')[0],
+                        'value': elements['value'],
+                        'vendor': elements['vendor']})
+        idul += 1 
                         
     return render_template('card.html', tranzactii=tranzactiile)
 
