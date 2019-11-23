@@ -3,6 +3,11 @@ body{
   background-color: #f5e818;
   background-image: url("/static/images/background.jpg");
   background-size: cover;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 .fixed{
@@ -32,7 +37,6 @@ body{
   height:100%;
   padding: 1em;
   background-color: #f5e818;
-  margin: auto;
   cursor: default;
   border-radius: 5px;
   -webkit-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
@@ -40,6 +44,9 @@ body{
   box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
 }
 
+.col-md-4{
+  margin-top:5vh;
+}
 .row .add_account{
   height: 60%;
 }
