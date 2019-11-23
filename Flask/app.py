@@ -46,7 +46,7 @@ def index():
     for elements in response:
         carduri.append({
             'nume': elements['name'],
-            'card': elements['bank'],
+            'card': elements['bank'].lower(),
             'iban': elements['IBAN'],
             'sold':elements['sold'],
             'create_date':elements['createdAt'].replace('T',' ').replace('Z','').split('.')[0]
