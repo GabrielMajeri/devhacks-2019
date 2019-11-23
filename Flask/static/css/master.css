@@ -1,5 +1,25 @@
-.align{
-  margin-top: 50%;
-  transform: translateY(-50%);
-  background-color: yellow;
+
+body{
+  /* background-color: #f5e818; */
+  background-image: url("/static/images/background.jpeg");
+  background-position:center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.align_middle{
+  margin-top: 20vh;
+}
+
+.row .col-md-3 p{
+  color: black;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-bottom: 0em;
+}
+
+.row .col-md-3 .feature{
+  padding: 4em;
+  background-color: white;
+  margin: 1em;
 }
