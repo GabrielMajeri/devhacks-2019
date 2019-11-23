@@ -62,11 +62,13 @@ body{
 }
 
 .row .col-md-3 .add_account p{
-  font-size: 60px;
+  font-size: 10em;
   color: black;
   margin-block-start: 0em;
   margin-block-end: 0em;
   margin-bottom: 0em;
+  margin-top:50%;
+  transform: translateY(-50%);
 }
 
 .row .col-md-3 .add_account{
