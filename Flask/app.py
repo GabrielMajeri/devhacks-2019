@@ -49,7 +49,7 @@ def index():
             'card': elements['bank'],
             'iban': elements['IBAN'],
             'sold':elements['sold'],
-            'create_date':elements['createdAt']
+            'create_date':elements['createdAt'].replace('T',' ').replace('Z','').split('.')[0]
             })
 
     return render_template('dashboard.html', cards=carduri)
