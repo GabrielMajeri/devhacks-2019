@@ -48,19 +48,16 @@ def card(id_card):
 @app.route('/dashboard', methods=['GET'])
 def index():
     carduri = []
-    response = requests.get('http://192.168.87.157:5000/cards')
+    response = requests.get('http://192.168.87.157:5000/accounts')
     response = response.content
     response = json.loads(response)
     for elements in response:
         carduri.append({
             'nume': elements['name'],
-            'cifre_card': elements['number'],
-            'valid_date': elements['expiryDate'],
             'card': elements['bank'],
-            'cvv': elements['CVV'],
-            'id': elements['_id'],
-            'iban': elements['attachedIBAN'],
-            'sold':elements['sold']
+            'iban': elements['IBAN'],
+            'sold':elements['sold'],
+            'create_date':elements['createdAt']
             })
 
     return render_template('dashboard.html', cards=carduri)
