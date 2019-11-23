@@ -7,13 +7,14 @@ body{
   background-repeat: no-repeat;
 }
 
-.logo{
+.fixed{
   position: fixed;
   top:0;
+  z-index: 1;
 }
 
-.logo .logo_img img{
-  height: 20vh;
+.logo_img{
+  height: 10vh;
   margin-left: 4em;
 }
 
