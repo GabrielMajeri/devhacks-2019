@@ -1,0 +1,31 @@
+main > header {
+    padding: 1rem 2rem;
+}
+
+main > * {
+    margin: 1rem 0;
+}
+
+.white-background {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+}
+
+.row > section {
+    margin: 0 1rem;
+}
+
+form {
+    max-width: 50em;
+    text-align: center;
+    padding: 1rem 2rem;
+    margin: auto;
+}
+
+#amount-row span {
+    flex: 1;
+}
+
+#amount {
+    flex: 10;
+}

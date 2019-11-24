@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<main>
+<header class="container white-background">
+    <h1>What is a <span>mutual fund</span>?</h1>
+    <p>A mutual fund is a type of financial vehicle made up of a pool of money collected from many investors to invest in securities like stocks, bonds, money market instruments, and other assets. Mutual funds are operated by professional money managers, who allocate the fund's assets and attempt to produce capital gains or income for the fund's investors. A mutual fund's portfolio is structured and maintained to match the investment objectives stated in its prospectus.</p>
+</header>
+<section class="container">
+<section class="row justify-content-center">
+    <section class="col-sm-10 col-md-3 col-lg-3 white-background">
+        <h2>Low-risk Mutual Fund</h2>
+        <p>Invests in existing, well-established companies which are already profitable</p>
+    </section>
+    <section class="col-sm-10 col-md-3 col-lg-3 white-background">
+        <h2>Medium-risk Mutual Fund</h2>
+        <p>Invests in a balanced portfolio</p>
+    </section>
+    <section class="col-sm-10 col-md-3 col-lg-3 white-background">
+        <h2>High-risk Mutual Fund</h2>
+        <p>Investment fund with a volatile portfolio</p>
+    </section>
+</section>
+</section>
+<section class="container white-background" id="graph-container">
+    <canvas id="graph-risk"></canvas>
+</section>
+<section class="container white-background">
+    <form onsubmit="return false;">
+        <h2>Invest now</h2>
+        <div class="form-group row justify-content-center">
+            <div class="col-sm-10 col-lg-3">
+                <input type="radio" id="low-risk" name="risk-level" value="low">
+                <label for="low-risk">Low-risk</label>
+            </div>
+            <div class="col-sm-10 col-lg-3">
+                <input type="radio" id="medium-risk" name="risk-level" value="medium" checked>
+                <label for="medium-risk">Medium-risk</label>
+            </div>
+            <div class="col-sm-10 col-lg-3">
+                <input type="radio" id="high-risk" name="risk-level" value="high">
+                <label for="high-risk">High-risk</label>
+            </div>
+        </div>
+        <div class="form-group row" id="amount-row">
+            <label for="amount">Invested amount</label>
+            <span>500</span> <input type="range" name="amount" id="amount" min="5s00" max="5000"/> <span>5000</span>
+        </div>
+        <div class="row justify-content-center">
+            <button type="submit" class="btn btn-primary">Invest</button>
+        </div>
+    </form>
+</section>
+</main>
+{% endblock %}
+
+{% block static_files %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
+<script src="/static/js/investments.js"></script>
+
+<link rel="stylesheet" href="/static/css/investments.css"/>
+{% endblock %}
