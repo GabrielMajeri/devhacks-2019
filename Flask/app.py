@@ -4,7 +4,6 @@ import json
 import requests
 import calendar
 import datetime
-app = Flask(__name__)
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
