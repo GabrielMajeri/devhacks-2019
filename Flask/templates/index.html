@@ -2,18 +2,35 @@
   <head>
     <title>Login page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
+    <style>
+      body {
+        background-color: ghostwhite;
+        padding-top: 5vh;
+      }
+
+      .container {
+        background-color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+      }
+    </style>
     <div class="container">
-      <h1>Please login</h1>
-      <br>
+      <h1>Login</h1>
       <form action="{{ url_for('login') }}" method="post">
-        <input type="text" placeholder="Username" name="username" value="{{
-          request.form.username }}">
-         <input type="password" placeholder="Password" name="password" value="{{
-          request.form.password }}">
-        <input class="btn btn-default" type="submit" value="Login">
+        <div class="form-group row">
+          <label for="username" class="col-sm-3 col-form-label">Username</label>
+          <input type="text" class="form-control col-sm-9" placeholder="Username" id="username" name="username" value="{{
+            request.form.username }}"/>
+        </div>
+        <div class="form-group row">
+          <label for="password" class="col-sm-3 col-form-label">Password</label>
+          <input type="password" class="form-control col-sm-9" placeholder="Password" id="password" name="password" value="{{
+            request.form.password }}"/>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Login"/>
       </form>
       {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}
