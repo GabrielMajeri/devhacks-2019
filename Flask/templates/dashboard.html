@@ -3,10 +3,11 @@
 
 
 {% block content %}
-<header class="row justify-content-center">
-  <h2>Sold total: <span style="color: blue">{{total_sold}}</span> lei</h1>
-</header>
-
+<div class="container-fluid ">
+  <header class="row justify-content-center">
+    <h2>Sold total: <span style="color: blue">{{total_sold}}</span> lei</h1>
+  </header>
+</div>
 <div class="container-fluid ">
   <div class="row  d-flex justify-content-center" id="list_of_accounts">
     {% for card in cards %}
