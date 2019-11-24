@@ -5,6 +5,8 @@ import calendar
 import datetime
 app = Flask(__name__)
 
+app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -46,20 +48,30 @@ def index():
     response = response.content
     response = json.loads(response)
     for elements in response:
-        carduri.append({
-            'nume': elements['name'],
-            'card': elements['bank'].lower(),
-            'iban': elements['IBAN'],
-            'sold':elements['sold'],
-            'create_date':elements['createdAt'].replace('T',' ').replace('Z','').split('.')[0]
-            })
+        if elements['bank'].lower() in ['bcr','raiffeisen']:
+            carduri.append({
+                'nume': elements['name'],
+                'card': elements['bank'].lower(),
+                'iban': elements['IBAN'],
+                'sold':elements['sold'],
+                'create_date':elements['createdAt'].replace('T',' ').replace('Z','').split('.')[0]
+                })
+        else:
+            carduri.append({
+                'nume': elements['name'],
+                'card': 'simplu',
+                'iban': elements['IBAN'],
+                'sold':elements['sold'],
+                'create_date':elements['createdAt'].replace('T',' ').replace('Z','').split('.')[0]
+                })
+
 
     return render_template('dashboard.html', cards = carduri)
 
 
 @app.route('/dashboard', methods=['POST'])
 def handle_data():
-    if  request.form['bank'].lowercase() in ['bcr','reiffeisen']:
+    if  request.form['bank'].lowercase() in ['bcr','raiffeisen']:
         json={'accountName': request.form['name'],'IBAN': request.form['iban'],'bank': request.form['bank'].lowercase()}
     else:
         json={'accountName': request.form['name'],'IBAN': request.form['iban'],'bank': 'simplu'}
