@@ -78,6 +78,15 @@ def handle_data():
     requests.post('http://192.168.87.157:5000/accounts', json=json)
     return redirect('/dashboard')
 
+@app.route("/profile", methods=['GET'])
+def profile():
+    # code
+    return render_template('profile.html')
+
+@app.route("/achievements", methods=['GET'])
+def achievements():
+    # code
+    return render_template('achievements.html')
 
 
 @app.route('/calendar', methods=['GET'])
