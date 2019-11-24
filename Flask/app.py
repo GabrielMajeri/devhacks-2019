@@ -93,6 +93,9 @@ def achievements():
     # code
     return render_template('achievements.html')
 
+@app.route("/investments", methods=['GET'])
+def investments():
+    return render_template('investments.html')
 
 @app.route('/calendar', methods=['GET'])
 def show_calendar():
