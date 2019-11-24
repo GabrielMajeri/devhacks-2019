@@ -1,0 +1,17 @@
+{
+  "name": "raiffeisen-api",
+  "version": "0.0.0",
+  "description": "Package to access Raiffeisen OpenAPI",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Gabriel Majeri <gabriel.majeri6@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "form-urlencoded": "^4.1.0",
+    "open": "^7.0.0",
+    "taiko": "^1.0.2",
+    "uuid": "^3.3.3"
+  }
+}
