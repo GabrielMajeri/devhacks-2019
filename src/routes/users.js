@@ -8,6 +8,7 @@ const config = require("../config.json")
 const Reward = require("../models/rewards")
 const client = require('twilio')(config.twilioID, config.twilioAuth)
 const path = require('path')
+const VoiceResponse = require('twilio').twiml.VoiceResponse
 
 const root = path.join(__dirname, '../')
 
@@ -17,11 +18,53 @@ router.get("/", async (req, res) => {
     res.send("Hello")
 })
 
+router.get("/voicexml", async (req, res) => {
+    try {
+        const accounts = await Account.findOne({
+
+        }, 'transactions')
+
+        console.log(accounts)
+
+        res.status(201).send(response)
+    } catch (error) {
+        res.status(500).send({
+            err: error.message
+        })
+    }
+
+})
+
+router.get("/score", async (req, res) => {
+    try {
+        let score = 0
+
+        const transactions = await Account.find({}, 'transactions')
+
+        const rewards = await Reward.find({
+            achieved: true
+        })
+
+        res.status(200).send({
+            score
+        })
+
+    } catch (error) {
+        res.status(500).send({
+            err: error.message
+        })
+    }
+})
+
 router.post("/call", async (req, res) => {
     try {
+
         console.log(config.twilioAuth, config.twilioID)
+
+
+
         client.calls.create({
-            url: 'https://handler.twilio.com/twiml/EH625accdd1357096a9c8bebe57f15927b',
+            url: 'https://handler.twilio.com/twiml/EHf5166b6e92ac766aaace43f4ac7cfd05',
             to: '+40741144484',
             from: '+12513330666'
         }).then(call => console.log(call.sid))
@@ -132,7 +175,8 @@ router.post("/accounts", async (req, res) => {
         const account = new Account({
             name: req.body.accountName,
             IBAN: req.body.IBAN,
-            bank: req.body.bank
+            bank: req.body.bank,
+            economy: req.body.economy
         })
 
         if (req.body.cardName && req.body.cardNumber && req.body.CVV && req.body.expires) {
@@ -164,8 +208,7 @@ router.post("/accounts", async (req, res) => {
         await account.save()
 
         res.status(201).send({
-            account,
-            card
+            account
         })
     } catch (error) {
         res.status(500).send({
@@ -185,6 +228,7 @@ router.get("/accounts", async (req, res) => {
         })
     }
 })
+
 
 router.get("/cards", async (req, res) => {
     try {
@@ -229,6 +273,7 @@ router.post("/transactions/:IBAN", async (req, res) => {
         const date = new Date()
 
         const value = Number(req.body.value)
+
         let closestValue = Math.floor(value)
 
         // round
@@ -241,14 +286,14 @@ router.post("/transactions/:IBAN", async (req, res) => {
         accounts.transactions = accounts.transactions.concat({
             vendor: req.body.vendor,
             value: req.body.value,
-            date
+            date: req.body.date || date
         })
 
         if (diff > 0) {
             accounts.transactions = accounts.transactions.concat({
                 vendor: "Round up " + diff,
                 value: diff,
-                date
+                date: req.body.date || date
             })
 
             const savings = await Account.findOne({
@@ -258,7 +303,7 @@ router.post("/transactions/:IBAN", async (req, res) => {
             savings.transactions = savings.transactions.concat({
                 vendor: "SAVINGS | Round up " + diff,
                 value: diff,
-                date
+                date: req.body.date || date
             })
 
             savings.sold = savings.sold + diff
@@ -272,7 +317,7 @@ router.post("/transactions/:IBAN", async (req, res) => {
             toAccounts.transactions = toAccounts.transactions.concat({
                 vendor: "Money from: " + accounts.IBAN + " " + accounts.name,
                 value: value,
-                date
+                date: req.body.date || date
             })
 
             const finalSum = Number(Number(toAccounts.sold) + Number(value))
@@ -293,7 +338,61 @@ router.post("/transactions/:IBAN", async (req, res) => {
     }
 })
 
-router.get("/transactions/:IBAN/", async (req, res) => {
+router.post("/transactions/:IBAN/salary", async (req, res) => {
+    try {
+        const economy = await Account.findOne({
+            economy: true
+        })
+
+        const account = await Account.findOne({
+            IBAN: req.params.IBAN
+        })
+
+        const value = req.body.value
+
+        const date = new Date()
+
+        const saved = (value * 10) / 100
+        const left = value - saved
+
+        account.transactions = account.transactions.concat({
+            vendor: req.body.vendor,
+            value: req.body.value,
+            date: req.body.date || date
+        })
+
+        account.transactions = account.transactions.concat({
+            vendor: "SAVINGS_Salary to: " + economy.IBAN,
+            value: saved,
+            date: req.body.date || date
+        })
+
+        economy.transactions = economy.transactions.concat({
+            vendor: "SAVINGS_Salary " + saved,
+            value: saved,
+            date: req.body.date || date
+        })
+
+        account.sold = account.sold + left
+        economy.sold = economy.sold + saved
+
+        await account.save()
+        await economy.save()
+
+        res.status(201).send({
+            account,
+            economy
+        })
+
+
+    } catch (error) {
+        res.status(500).send({
+            err: error.message
+        })
+    }
+})
+
+router.get("/transactions/:IBAN", async (req, res) => {
     try {
         let accounts = await Account.findOne({
             IBAN: req.params.IBAN
@@ -326,10 +425,13 @@ router.get("/transactions/:IBAN/:date", async (req, res) => {
         const lowerBound = new Date(req.params.date)
         let upperBound = new Date(req.params.date)
         upperBound.setDate(upperBound.getDate() + 1)
-        accounts.transactions = accounts.transactions.filter(transaction => {
+        accounts.transactions = await accounts.transactions.filter(transaction => {
             if (lowerBound <= transaction.date && upperBound >= transaction.date) {
-                if (transaction.vendor.includes('Round'))
-                    return true;
+                if (transaction.vendor.includes('Round')) {
+                    return true
+                } else if (transaction.vendor.includes('SAVINGS_Salary')) {
+                    return true
+                }
             }
             return false;
         })

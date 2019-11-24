@@ -40,7 +40,12 @@ const accountSchema = new mongoose.Schema({
     },
     cards: [{
         id: mongoose.Schema.Types.ObjectId
-    }]
+    }],
+    economy: {
+        type: Boolean,
+        required: true,
+        default: false
+    }
 }, {
     timestamps: true
 })
