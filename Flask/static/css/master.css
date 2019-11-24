@@ -10,8 +10,8 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-.fixed{
-  position: fixed;
+.sticky{
+  position: sticky;
   top:0;
   z-index: 1;
 }
@@ -76,8 +76,8 @@ body::-webkit-scrollbar {
   margin-block-start: 0em;
   margin-block-end: 0em;
   margin-bottom: 0em;
-  margin-top:50%;
-  transform: translateY(-50%);
+  /* margin-top:50%;
+  transform: translateY(-50%); */
 }
 
 .row .add_account{
@@ -115,4 +115,20 @@ body::-webkit-scrollbar {
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
+}
+
+.calendar{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day{
+  width: 20vh;
+  height:20vh;
+  border: 1px solid white;
+  margin: 0.4em;
+}
+
+.month{
+  font-size: 4em;
 }

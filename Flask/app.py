@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json
 import requests
+import calendar
+import datetime
 app = Flask(__name__)
 
 
@@ -32,8 +34,8 @@ def card(iban_card):
                         'data': elements['date'].replace('T',' ').replace('Z','').split('.')[0],
                         'value': elements['value'],
                         'vendor': elements['vendor']})
-        idul += 1 
-                        
+        idul += 1
+
     return render_template('card.html', tranzactii=tranzactiile)
 
 
@@ -52,7 +54,7 @@ def index():
             'create_date':elements['createdAt'].replace('T',' ').replace('Z','').split('.')[0]
             })
 
-    return render_template('dashboard.html', cards=carduri)
+    return render_template('dashboard.html', cards = carduri)
 
 
 @app.route('/dashboard', methods=['POST'])
@@ -62,11 +64,18 @@ def handle_data():
     else:
         json={'accountName': request.form['name'],'IBAN': request.form['iban'],'bank': 'simplu'}
 
-
     requests.post('http://192.168.87.157:5000/accounts', json=json)
     return redirect('/dashboard')
 
 
+
+@app.route('/calendar', methods=['GET'])
+def show_calendar():
+    now = datetime.datetime.now()
+    nr = calendar.monthrange(now.year, now.month)[1]
+    i = now.month
+    mth = calendar.month_name[i];
+    return render_template('calendar.html', len = nr, month = mth)
 
 if __name__ == '__main__':
     app.run()
