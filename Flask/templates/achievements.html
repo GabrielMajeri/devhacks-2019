@@ -3,15 +3,76 @@
 
 
 {% block content %}
+<style>
+	
+p
+{
+	text-align: center;
+}	
+</style>
+<br>
+<br>
+<br>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<div style="display: flex;flex-wrap: wrap;">
+	<div style="display: inline-block;width: 30%;" >
+		<img src="/static/images/savings.svg" style="margin-left: auto;margin-right: auto;display: block;" width="25%">
+		<br>
+		<h5 style="text-align: center;">Good practices in economii</h5>
+		  <div class="progress" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
+		    <div class="progress-bar" role="progressbar" aria-valuenow="{{days_sum}}"
+		    aria-valuemin="0" aria-valuemax="100" style="width:30%;">40%
+		    </div>
+		  </div>
+		<p>Prima dată...pune deoparte 10%</p>
+	    <p>Regula de 48 de ore</p>
+	    <p>Automatizează plățile lunare</p>
+	    <p>Economisește până te doare</p>
+	    <p>Investiții sănătoase</p>
+
+	</div>
+
+	<div style="display: inline-block;width: 30%;">
+		<img src="/static/images/tabieturi.svg" style="margin-left: auto;margin-right: auto;display: block;" width="25%">
+		<br>
+		<h5 style="text-align: center;">Tabieturi salvatoare</h5>
+		  <div class="progress" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
+		    <div class="progress-bar" role="progressbar" aria-valuenow="{{days_sum}}"
+		    aria-valuemin="0" aria-valuemax="100" style="width:30%;">40%
+		    </div>
+		  </div>
+		<p>Gătește-ți propria mâncare</p>
+		<p>Redu facturile lunare</p>
+		<p>Postul cheltuielilor dintr-o anumită categorie</p>
+		<p>Economisește în plus</p>
 
 
-Achivementuri obtinute colorate intr-un fel
+	</div>
 
-Cele neoptinute in alt fel
+	<div style="display: inline-block;width: 30%;">
+		<img src="/static/images/buget.svg" style="margin-left: auto;margin-right: auto;display: block;" width="25%">
+		<br>
+		<h5 style="text-align: center;">Buget</h5>
+		  <div class="progress" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
+		    <div class="progress-bar" role="progressbar" aria-valuenow="{{days_sum}}"
+		    aria-valuemin="0" aria-valuemax="100" style="width:30%;">40%
+		    </div>
+		  </div>
+		<!-- <p>Prima dată...pune deoparte 10%</p>  -->
+		<canvas id="pieChart"></canvas>
+		<!-- <p>ptchart lurcuri de baza : 50% lucruri de baza, 20%viitorul tau, 30 %placeri sanatoase</p> -->
+	   <!--  <p>Investiții sănătoase</p> -->
 
-Scor total, final, etc
 
+	</div>
+</div>
 
+<script >
+	var ctxP = document.getElementById("pieChart").getContext('2d');
+	var myPieChart = new Chart(ctxP, {type: 'pie',data: {labels: ["Lucuri de baza", "viitorul tau", "Placeri sanatoase"],
+	datasets: [{data: [50, 20, 30],backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+	hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]}]},options: {responsive: true}});
+</script>
 {% endblock %}
 
 
