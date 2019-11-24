@@ -129,7 +129,8 @@ body::-webkit-scrollbar {
   height:20vh;
   border: 1px solid white;
   padding: 0.5em;
-  margin: 0.4em;'-webkit-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
+  margin: 0.4em;
+  -webkit-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
   -moz-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
   box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
   color: white;
