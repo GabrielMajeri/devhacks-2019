@@ -151,3 +151,13 @@ body::-webkit-scrollbar {
   padding-left:5vh;
   color: black;
 }
+
+#area1, #area2, #area3{
+  padding: 1rem;
+}
+
+
+.icon_xs img{
+  width: 2em;
+  height: 2em;
+}
