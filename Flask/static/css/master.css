@@ -131,7 +131,8 @@ body::-webkit-scrollbar {
   padding: 0.5em;
   margin: 0.4em;'-webkit-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
   -moz-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
-  box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);'
+  box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
+  color: white;
 }
 
 .month{
@@ -142,6 +143,12 @@ body::-webkit-scrollbar {
   font-size: 2.5em;
 }
 
-.progress{
+.container .progress{
   margin-top:5vh;
+  height:5vh;
+}
+
+.container .progress .progress-bar{
+  padding-left:5vh;
+  color: black;
 }
