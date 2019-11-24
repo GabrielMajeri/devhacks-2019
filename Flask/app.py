@@ -98,6 +98,10 @@ def achievements():
 def investments():
     return render_template('investments.html')
 
+@app.route("/regular_bills", methods=['GET'])
+def regular_bills():
+    return render_template('regular_bills.html')
+
 @app.route('/calendar', methods=['GET'])
 def show_calendar():
     now = datetime.datetime.now()

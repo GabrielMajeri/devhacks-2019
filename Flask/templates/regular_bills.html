@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<main class="container">
+    <section>
+        <a href="https://www.vodafone.ro/" target="_blank"><img src="https://s1.vodafonestatic.ro/images/vodafone-logo.png?v=2" alt="Vodafone"/></a>
+        Plătește-ți facturile și reîncarcă-ți numărul online prin aplicația <a href="https://www.vodafone.ro/personal/asistenta/myvodafone/aplicatia-myvodafone/index.htm" target="_blank">MyVodafone</a>
+    </section>
+    <section>
+        <a href="https://www.upc.ro./" target="_blank"><img src="https://www.upc.ro/sign-in/etc/designs/upc-pe/media/logos/upc_greenbg_srgb.png" alt="UPC"/></a> Achită-ți factura la internet, telefon și televiziune prin <a href="https://www.upc.ro/sign-in?protocol=oidc" target="_blank">My UPC</a>
+    </section>
+    <section style="background-color: #0555fa; border-color: #0545c7; color: white">
+        <a href="https://enel.ro/" target="_blank"><img src="https://my.enel.ro/VAADIN/themes/dashboard/img/enel-logo.png"/></a> Plătește-ți factura la curent electric și gaz pe <a href="https://my.enel.ro/" target="_blank" style="color: lightgray">My Enel</a>
+    </section>
+</main>
+{% endblock %}
+
+{% block static_files %}
+    <style>
+        main section {
+            margin-top: 1rem;
+            padding: 1rem 3rem;
+
+            background-color: white;
+            border-radius: 25px;
+            border: 1px solid lightgray;
+        }
+
+        main section img {
+            max-height: 4rem;
+            width: auto;
+            margin-right: 1rem;
+        }
+    </style>
+{% endblock %}

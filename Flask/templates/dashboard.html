@@ -16,10 +16,14 @@
             <img src="/static/images/card_{{card.card}}.jpg">
           </div>
           <div class="card_details">
-              <p>{{card.nume}}</p>
-              <p>{{card.iban}}</p>
-              <p>{{card.create_date}}</p>
-              <p>{{card.sold}} lei</p>
+            <div class="row container" style="margin-top: 0.5rem;">
+              <span style="flex-grow: 3; font-weight: bold;">{{card.nume}}</span>
+              <span style="flex-grow: 1; font-weight: bolder">{{card.sold}} lei</span>
+            </div>
+            <div class="row container">
+              <span style="flex-grow: 4; line-height: 2;">IBAN {{card.iban}}</span>
+              <span style="flex-grow: 1; line-height: 2;">{{card.create_date}}</span>
+            </div>
           </div>
         </div>
       </div>
