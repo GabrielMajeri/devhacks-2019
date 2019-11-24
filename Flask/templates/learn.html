@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<main style="background-color: white;">
+    <h1>Arii de dezvoltare</h1>
+    <ul class="nav nav-pills nav-fill" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="area1-tab" href="#area1" data-toggle="tab" aria-controls="area1" aria-selected="true">Area 1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="area2-tab" href="#area2" data-toggle="tab" aria-controls="area2" aria-selected="false">Area 2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="area3-tab" href="#area3" data-toggle="tab" aria-controls="area3" aria-selected="false">Area 3</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="learn-content">
+      <div class="tab-pane fade show active" id="area1" role="tabpanel" aria-labelledby="home-tab">
+        Info
+      </div>
+      <div class="tab-pane fade" id="area2" role="tabpanel" aria-labelledby="profile-tab">
+        Info
+      </div>
+      <div class="tab-pane fade" id="area3" role="tabpanel" aria-labelledby="contact-tab">
+        Info
+      </div>
+    </div>
+</main>
+{% endblock %}
+
+
+{% block static_files %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+{% endblock %}

@@ -83,6 +83,10 @@ def handle_data():
     requests.post('http://192.168.87.157:5000/accounts', json=json)
     return redirect('/dashboard')
 
+@app.route("/learn", methods=['GET'])
+def learn():
+    return render_template('learn.html')
+
 @app.route("/profile", methods=['GET'])
 def profile():
     # code
