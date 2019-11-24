@@ -47,13 +47,15 @@ def index():
     response = requests.get('http://192.168.87.157:5000/accounts')
     response = response.content
     response = json.loads(response)
+    total_sold = 0
     for elements in response:
+        total_sold += elements['sold']
         if elements['bank'].lower() in ['bcr','raiffeisen']:
             carduri.append({
                 'nume': elements['name'],
                 'card': elements['bank'].lower(),
                 'iban': elements['IBAN'],
-                'sold':elements['sold'],
+                'sold': elements['sold'],
                 'create_date':elements['createdAt'].replace('T',' ').replace('Z','').split('.')[0]
                 })
         else:
@@ -61,12 +63,11 @@ def index():
                 'nume': elements['name'],
                 'card': 'simplu',
                 'iban': elements['IBAN'],
-                'sold':elements['sold'],
+                'sold': elements['sold'],
                 'create_date':elements['createdAt'].replace('T',' ').replace('Z','').split('.')[0]
                 })
 
-
-    return render_template('dashboard.html', cards = carduri)
+    return render_template('dashboard.html', cards=carduri, total_sold=total_sold)
 
 
 @app.route('/dashboard', methods=['POST'])

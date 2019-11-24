@@ -47,9 +47,6 @@ body::-webkit-scrollbar {
 .col-md-4{
   margin-top:5vh;
 }
-.row .add_account{
-  height: 60%;
-}
 
 .row .card:hover, .row .add_account:hover{
   cursor:pointer;
@@ -84,6 +81,7 @@ body::-webkit-scrollbar {
 
 .row .add_account{
   padding: 0em;
+  margin-bottom: 2rem;
 }
 
 
