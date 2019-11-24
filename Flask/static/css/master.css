@@ -34,11 +34,11 @@ body::-webkit-scrollbar {
 
 .row .card, .row .add_account{
   width: 100%;
-  height: 100%;
+  height:100%;
   padding: 1em;
-  background-color: #2cfdd0;
+  background-color: #f5e818;
   cursor: default;
-  border-radius: 5px;
+  border-radius: 15px;
   -webkit-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
   -moz-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
   box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
@@ -46,6 +46,9 @@ body::-webkit-scrollbar {
 
 .col-md-4{
   margin-top:5vh;
+}
+.row .add_account{
+  height: 60%;
 }
 
 .row .card:hover, .row .add_account:hover{
@@ -66,7 +69,7 @@ body::-webkit-scrollbar {
 .row .card_img img{
   width:100%;
   display: inline-block;
-  border-radius: 10px;
+  border-radius: 18px;
 }
 
 .row .add_account p{
@@ -81,7 +84,6 @@ body::-webkit-scrollbar {
 
 .row .add_account{
   padding: 0em;
-  margin-bottom: 2rem;
 }
 
 
@@ -126,6 +128,7 @@ body::-webkit-scrollbar {
   width: 20vh;
   height:20vh;
   border: 1px solid white;
+  border-radius: 5px;
   padding: 0.5em;
   margin: 0.4em;
   -webkit-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
@@ -156,8 +159,12 @@ body::-webkit-scrollbar {
   padding: 1rem;
 }
 
-
 .icon_xs img{
   width: 2em;
   height: 2em;
+}
+
+.icon_xxs img{
+  width: 1em;
+  height: 1em;
 }
