@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json
 import requests
-app = Flask(__name__)
 
+app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -32,8 +33,8 @@ def card(iban_card):
                         'data': elements['date'].replace('T',' ').replace('Z','').split('.')[0],
                         'value': elements['value'],
                         'vendor': elements['vendor']})
-        idul += 1 
-                        
+        idul += 1
+
     return render_template('card.html', tranzactii=tranzactiile)
 
 
