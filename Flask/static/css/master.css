@@ -59,9 +59,11 @@ body::-webkit-scrollbar {
   width:100%;
   display: inline-block;
 }
+
 .row .card_details p{
   width: 49%;
   display: inline-block;
+  font-size: 0.8em;
 }
 
 .row .card_img img{
@@ -126,7 +128,10 @@ body::-webkit-scrollbar {
   width: 20vh;
   height:20vh;
   border: 1px solid white;
-  margin: 0.4em;
+  padding: 0.5em;
+  margin: 0.4em;'-webkit-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
+  -moz-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
+  box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);'
 }
 
 .month{
