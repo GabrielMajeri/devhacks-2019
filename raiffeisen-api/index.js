@@ -1,9 +1,15 @@
 const formurlencoded = require("form-urlencoded").default;
 const fs = require("fs");
 const https = require("https");
-const open = require("open");
-const readline = require("readline");
-const { openBrowser, goto, write, click, closeBrowser } = require("taiko");
+const {
+  openBrowser,
+  goto,
+  write,
+  $,
+  click,
+  closeBrowser,
+  currentURL
+} = require("taiko");
 const uuidv1 = require("uuid/v1");
 
 const API_HOSTNAME = "api-test.raiffeisen.ro";
@@ -19,21 +25,6 @@ const clientSecret =
   process.env.CLIENT_SECRET ||
   "uR2oU3tT4pU0eV7wA6uN0gM6fE3oN7oD0wL3rB5tR5jQ0qC7uF";
 const psuId = "9999999997";
-
-const getUserInput = prompt => {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
-  return new Promise((resolve, _reject) => {
-    rl.question(prompt, answer => {
-      resolve(answer);
-
-      rl.close();
-    });
-  });
-};
 
 const makeRequest = (method, path, headers, data, apiHostname) =>
   new Promise((resolve, reject) => {
@@ -133,19 +124,21 @@ const requestConsent = async () => {
 const getAccessCode = async consentId => {
   const oauth2Url = `https://api-auth-test.raiffeisen.ro/psd2-rbro-oauth2-api/oauth2/authorize?response_type=code&scope=AISP&redirect_uri=${REDIRECT_URI}&consentId=${consentId}&client_id=${clientId}`;
 
+  let accessCode = null;
   try {
     await openBrowser();
     await goto(oauth2Url);
-    await write("9999999997");
-    await click("Login");
-    await click("Return");
-  } catch (error) {
-    console.error(error);
+    await write("9999999997", $("#mat-input-0"));
+    await click("Log in");
+    await click("Return to TPP");
+    const url = await currentURL();
+    const urlParts = url.split("=");
+    accessCode = urlParts[urlParts.length - 1];
   } finally {
     closeBrowser();
   }
 
-  return await getUserInput("Access code:");
+  return accessCode;
 };
 
 const getAuthToken = async code => {
@@ -174,40 +167,54 @@ const getAuthToken = async code => {
   return JSON.parse(response).access_token;
 };
 
-const authApp = async () => {
-  const consentId = await requestConsent();
-  console.log("Consent ID:", consentId);
+class RaiffeisenAPI {
+  constructor(consentId, authToken) {
+    this.consentId = consentId;
+    this.authToken = authToken;
+  }
 
-  const authToken = await getAuthToken(await getAccessCode(consentId));
-  console.log("Auth token:", authToken);
+  static async createAPI() {
+    const consentId = await requestConsent();
+    //console.log("API", consentId);
 
-  return { consentId, authToken };
-};
+    const authToken = await getAuthToken(await getAccessCode(consentId));
+    //console.log("Auth", authToken);
 
-(async () => {
-  const { consentId, authToken } = await authApp();
+    return new RaiffeisenAPI(consentId, authToken);
+  }
 
-  const makeAPIRequest = async (method, path, headers) => {
+  async makeAPIRequest(method, path, headers) {
     const response = await makeRequest(method, path, {
-      Authorization: `Bearer ${authToken}`,
-      "Consent-ID": consentId,
+      Authorization: `Bearer ${this.authToken}`,
+      "Consent-ID": this.consentId,
       ...headers
     });
 
     return JSON.parse(response);
-  };
+  }
 
-  const { accounts } = await makeAPIRequest(
-    "GET",
-    "/v1/psd2-accounts-api-1.3.2/accounts?withBalance=true"
-  );
+  async getAccounts() {
+    const { accounts } = await this.makeAPIRequest(
+      "GET",
+      "/v1/psd2-accounts-api-1.3.2/accounts?withBalance=true"
+    );
+
+    return accounts;
+  }
+
+  async getTransactions(accountId) {
+    const transactionsUrl = `/accounts/${accountId}/transactions`;
+    const { transactions } = await this.makeAPIRequest(
+      "GET",
+      `${transactionsUrl}?bookingStatus=both`
+    );
+    return transactions;
+  }
+}
+
+(async () => {
+  const api = await RaiffeisenAPI.createAPI();
+  console.log(api);
+  const accounts = await api.getAccounts();
   console.log(accounts);
-
-  const transactionsUrl = accounts[0]._links.transactions;
-  const transactions = await makeAPIRequest(
-    "GET",
-    `${transactionsUrl}?bookingStatus=both`
-  );
-
-  console.log(transactions);
 })();
