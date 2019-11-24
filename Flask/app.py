@@ -96,7 +96,26 @@ def show_calendar():
     nr = calendar.monthrange(now.year, now.month)[1]
     i = now.month
     mth = calendar.month_name[i];
-    return render_template('calendar.html', len = nr, month = mth)
+    data = [now.year,mth,0,'00','00','00','000']
+    progreses = [0]*31
+    x=requests.get("http://192.168.87.157:5000/accounts")
+    x=x.content
+    x=json.loads(x)
+    for e in x:
+        iban_card = e['IBAN']
+        for i in range(1, nr+1):
+                data[2] += 1
+                date1 = str(data[0])+"-"+str(data[1])+"-"+str(data[2])+"T"+str(data[3])+":"+str(data[4])+":"+str(data[5])+"."+str(data[6])+'Z'
+                response = requests.get('http://192.168.87.157:5000/transactions/'+str(iban_card) + '/' +str(date1))
+                response = response.content
+                response = json.loads(response)
+                response = response['transactions']
+                if response == []:
+                    progreses[i]+=0
+                else:
+                    progreses[i]+=response[0]['value']
+    suma = sum(x for x in progreses)
+    return render_template('calendar.html', len = nr, month = mth, values = progreses, days_sum = suma)
 
 if __name__ == '__main__':
     app.run()
