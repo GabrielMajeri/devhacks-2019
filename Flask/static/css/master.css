@@ -137,3 +137,11 @@ body::-webkit-scrollbar {
 .month{
   font-size: 3.5em;
 }
+
+.description{
+  font-size: 2.5em;
+}
+
+.progress{
+  margin-top:5vh;
+}
