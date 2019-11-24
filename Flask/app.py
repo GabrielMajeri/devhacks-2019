@@ -67,7 +67,7 @@ def index():
                 'create_date':elements['createdAt'].replace('T',' ').replace('Z','').split('.')[0]
                 })
 
-    return render_template('dashboard.html', cards=carduri, total_sold=total_sold)
+    return render_template('dashboard.html', cards=carduri, total_sold=round(total_sold, 2))
 
 
 @app.route('/dashboard', methods=['POST'])
