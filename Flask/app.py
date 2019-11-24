@@ -55,7 +55,7 @@ def index():
                 'nume': elements['name'],
                 'card': elements['bank'].lower(),
                 'iban': elements['IBAN'],
-                'sold': elements['sold'],
+                'sold': round(elements['sold'], 2),
                 'create_date':elements['createdAt'].replace('T',' ').replace('Z','').split('.')[0]
                 })
         else:
@@ -63,7 +63,7 @@ def index():
                 'nume': elements['name'],
                 'card': 'simplu',
                 'iban': elements['IBAN'],
-                'sold': elements['sold'],
+                'sold': round(elements['sold'], 2),
                 'create_date':elements['createdAt'].replace('T',' ').replace('Z','').split('.')[0]
                 })
 
