@@ -28,7 +28,7 @@ def card(iban_card):
     idul = 1
     response = requests.get('http://192.168.87.157:5000/transactions/'+str(iban_card))
     response = response.content
-    response = json.loads(response)[0]
+    response = json.loads(response)
     response = response['transactions']
     for elements in response:
         tranzactiile.append({
