@@ -19,9 +19,9 @@ p
 		<img src="/static/images/savings.svg" style="margin-left: auto;margin-right: auto;display: block;" width="25%">
 		<br>
 		<h5 style="text-align: center;">Good practices in economii</h5>
-		  <div class="progress" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
-		    <div class="progress-bar" role="progressbar" aria-valuenow="{{days_sum}}"
-		    aria-valuemin="0" aria-valuemax="100" style="width:30%;">40%
+		  <div class="progress" style="width: 80%;margin-left: auto;margin-right: auto;">
+		    <div class="progress-bar" role="progressbar" aria-valuenow="40"
+		    aria-valuemin="0" aria-valuemax="100" style="width:30%;">30%
 		    </div>
 		  </div>
 		<p>Prima dată...pune deoparte 10%</p>
@@ -36,9 +36,9 @@ p
 		<img src="/static/images/tabieturi.svg" style="margin-left: auto;margin-right: auto;display: block;" width="25%">
 		<br>
 		<h5 style="text-align: center;">Tabieturi salvatoare</h5>
-		  <div class="progress" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
-		    <div class="progress-bar" role="progressbar" aria-valuenow="{{days_sum}}"
-		    aria-valuemin="0" aria-valuemax="100" style="width:30%;">40%
+		  <div class="progress" style="width: 80%;margin-left: auto;margin-right: auto;">
+		    <div class="progress-bar" role="progressbar" aria-valuenow="40"
+		    aria-valuemin="0" aria-valuemax="100" style="width:30%;">30%
 		    </div>
 		  </div>
 		<p>Gătește-ți propria mâncare</p>
@@ -53,9 +53,9 @@ p
 		<img src="/static/images/buget.svg" style="margin-left: auto;margin-right: auto;display: block;" width="25%">
 		<br>
 		<h5 style="text-align: center;">Buget</h5>
-		  <div class="progress" style="width: 80%;margin-left: auto;margin-right: auto;display: block;">
-		    <div class="progress-bar" role="progressbar" aria-valuenow="{{days_sum}}"
-		    aria-valuemin="0" aria-valuemax="100" style="width:30%;">40%
+		  <div class="progress" style="width: 80%;margin-left: auto;margin-right: auto;">
+		    <div class="progress-bar" role="progressbar" aria-valuenow="40"
+		    aria-valuemin="0" aria-valuemax="100" style="width:30%;">30%
 		    </div>
 		  </div>
 		<!-- <p>Prima dată...pune deoparte 10%</p>  -->
@@ -69,7 +69,7 @@ p
 
 <script >
 	var ctxP = document.getElementById("pieChart").getContext('2d');
-	var myPieChart = new Chart(ctxP, {type: 'pie',data: {labels: ["Lucuri de baza", "viitorul tau", "Placeri sanatoase"],
+	var myPieChart = new Chart(ctxP, {type: 'pie',data: {labels: ["Lucuri de baza", "Viitorul tau", "Placeri sanatoase"],
 	datasets: [{data: [50, 20, 30],backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
 	hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]}]},options: {responsive: true}});
 </script>
