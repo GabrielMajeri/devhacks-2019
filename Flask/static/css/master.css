@@ -17,7 +17,7 @@ body::-webkit-scrollbar {
 }
 
 .logo_img{
-  height: 10vh;
+  max-height: 10vh;
   margin-left: 4em;
 }
 

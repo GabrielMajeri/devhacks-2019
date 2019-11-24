@@ -41,10 +41,6 @@ def card(iban_card):
     return render_template('card.html', tranzactii=tranzactiile)
 
 
-@app.route('/investments', methods=['GET'])
-def investments():
-    return render_template('investments.html')
-
 @app.route('/dashboard', methods=['GET'])
 def index():
     carduri = []
