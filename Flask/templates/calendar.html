@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="month text-center">
+    <p>{{month}}</p>
+  </div>
+  <div class="calendar">
+    {%for i in range(0, len)%}
+
+      <div class="day" style="background-color:green;">
+        <span class="number">{{i}}/{{len}}</span>
+      </div>
+
+    {%endfor%}
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block static_files %}
+{% endblock %}
