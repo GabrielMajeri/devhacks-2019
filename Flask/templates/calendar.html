@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="description">
+    <p>Month progress: </p>
+  </div>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{days_sum}}"
+    aria-valuemin="0" aria-valuemax="100" style="width:{{days_sum}}%;">
+      {{days_sum}} lei
+    </div>
+  </div>
+
+  <div class="month text-center">
+    <p>{{month}}</p>
+  </div>
+  <div class="calendar">
+    {%for i in range(1, len + 1)%}
+
+      <div class="day" style="background-color:rgba(0,{{(values[i]/10)*255}},0,0.9)">
+        <span class="number">{{i}}/{{len}}</span>
+        <div class="d-flex align-items-center">
+          <span class="text-center">{{values[i]}} lei</span>
+        </div>
+
+      </div>
+
+    {%endfor%}
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block static_files %}
+{% endblock %}

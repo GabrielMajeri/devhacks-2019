@@ -1,49 +1,30 @@
 {% extends 'layout.html' %}
+
 {% block content %}
 
-<style>
+	<div class="container">
+		<table class="table">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Data</th>
+		      <th scope="col">Value</th>
+		      <th scope="col">Vendor</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+				{% for element in tranzactii %}
+					<tr style="background-color:black;">
+						{% for i in element %}
+						<td style="color:#999;">{{element[i]}}</td>
+						{% endfor %}
+					</tr>
 
-	#tranzact {
-	  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	  border-collapse: collapse;
-	  width: 100%;
-	}
+				{% endfor %}
 
-	#tranzact td, #tranzact th {
-	  border: 1px solid #ddd;
-	  padding: 8px;
-	}
-
-	#tranzact tr:nth-child(even){background-color: #f2f2f2;}
-
-	#tranzact tr:hover {background-color: #ddd;}
-
-	#tranzact th {
-	  padding-top: 12px;
-	  padding-bottom: 12px;
-	  text-align: left;
-	  background-color: #4CAF50;
-	  color: white;
-	}
-
-</style>
-
-<div>
-<table id="tranzact">
-	<tr><th>A</th><th>B</th><th>C</th></tr>
-	{% for element in tranzactii %}
-		<tr>
-			{% for i in element %}
-			<td>{{element[i]}}</td>
-			{% endfor %}
-		</tr>
-			
-	{% endfor %}
-
-</table>
-
-
-
+		  </tbody>
+		</table>
+	</div>
 
 {% endblock %}
 

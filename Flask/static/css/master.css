@@ -2,18 +2,22 @@
 body{
   background-color: #f5e818;
   background-image: url("/static/images/background.jpg");
-  background-position:top;
-  background-size: 120%;
-  background-repeat: no-repeat;
+  background-size: cover;
+  scrollbar-width: none;
 }
 
-.logo{
-  position: fixed;
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.sticky{
+  position: sticky;
   top:0;
+  z-index: 1;
 }
 
-.logo .logo_img img{
-  height: 20vh;
+.logo_img{
+  height: 10vh;
   margin-left: 4em;
 }
 
@@ -21,19 +25,18 @@ body{
   margin-top: 20vh;
 }
 
-.row .col-md-4 p{
+.row .card p{
   color: black;
   margin-block-start: 0em;
   margin-block-end: 0em;
   margin-bottom: 0em;
 }
 
-.row .col-md-4 .card, .row .col-md-3 .add_account{
+.row .card, .row .add_account{
   width: 100%;
-  height:90%;
+  height:100%;
   padding: 1em;
   background-color: #f5e818;
-  margin: 1em;
   cursor: default;
   border-radius: 5px;
   -webkit-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
@@ -41,34 +44,45 @@ body{
   box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
 }
 
-.row .col-md-4 .card:hover, .row .col-md-3 .add_account:hover{
+.col-md-4{
+  margin-top:5vh;
+}
+.row .add_account{
+  height: 60%;
+}
+
+.row .card:hover, .row .add_account:hover{
   cursor:pointer;
 }
 
-.row .col-md-4 .card_img,.row .col-md-4 .card_details{
+.row .card_img, .row .card_details{
   width:100%;
   display: inline-block;
 }
-.row .col-md-4 .card_details p{
+
+.row .card_details p{
   width: 49%;
   display: inline-block;
+  font-size: 0.8em;
 }
 
-.row .col-md-4 .card_img img{
+.row .card_img img{
   width:100%;
   display: inline-block;
   border-radius: 10px;
 }
 
-.row .col-md-3 .add_account p{
-  font-size: 60px;
+.row .add_account p{
+  font-size: 10em;
   color: black;
   margin-block-start: 0em;
   margin-block-end: 0em;
   margin-bottom: 0em;
+  /* margin-top:50%;
+  transform: translateY(-50%); */
 }
 
-.row .col-md-3 .add_account{
+.row .add_account{
   padding: 0em;
 }
 
@@ -103,4 +117,38 @@ body{
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
+}
+
+.calendar{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day{
+  width: 20vh;
+  height:20vh;
+  border: 1px solid white;
+  padding: 0.5em;
+  margin: 0.4em;'-webkit-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
+  -moz-box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
+  box-shadow: -2px 4px 12px 2px rgba(15,15,15,1);
+  color: white;
+}
+
+.month{
+  font-size: 3.5em;
+}
+
+.description{
+  font-size: 2.5em;
+}
+
+.container .progress{
+  margin-top:5vh;
+  height:5vh;
+}
+
+.container .progress .progress-bar{
+  padding-left:5vh;
+  color: black;
 }
