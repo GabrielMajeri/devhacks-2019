@@ -1,7 +1,0 @@
-{
-    "secret": "testingdontuse",
-    "tokenDuration": "7d",
-    "dbPath": "mongodb://127.0.0.1:27017/devhacks-mock-api",
-    "twilioID": "ACcbf6a5a4e1f96127acdb582cd5f83590",
-    "twilioAuth": "f4c91f1bac7dc3f1ab5fb5935bf36287"
-}
