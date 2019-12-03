@@ -1,11 +1,18 @@
-# Devhacks 2019 code
+# Devhacks 2019 Code
 
-Usage:
+This repo contains the implementation of our idea for the [DevHacks 2019](https://www.devtalks.ro/bucharest/devhacks/) hackathon.
+We participated in the "Future in Banking" category, sponsored by Raiffeisen.
 
-din folderul Flask dati comanda python3 server.py
+## Structure
 
-in Folderul Flask vom avea urmatoarele directoare:
+- `Flask`: frontend written in Flask
+- `raiffeisen-api`: Node module for accessing the Raiffeisen Open API
+- `src`: backend in Mongoose + MongoDB
 
--> static: aici vor fi fisierele Html, Js, etc
+## Team 0xBYTECODE
 
--> forms: aici vom defini formularele (de logare si orice vom mai avea nevoie) 
+- Alexandru-Vlad Adam ([Aleksander223](https://github.com/Aleksander223))
+- Antonia Biro-Bălan ([ToniBiro](https://github.com/ToniBiro))
+- Cosmin Ștefan ([Cosmin2108](https://github.com/Cosmin2108))
+- Gabriel Majeri ([GabrielMajeri](https://github.com/GabrielMajeri))
+- Iustin Pînzariu ([PnzJust](https://github.com/PnzJust))
